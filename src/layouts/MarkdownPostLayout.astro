@@ -1,0 +1,15 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+const { frontmatter } = Astro.props;
+const formattedPubDate = new Intl.DateTimeFormat("en-ca").format(
+  Date.parse(frontmatter.pubDate)
+);
+---
+
+<BaseLayout pageTitle={frontmatter.title}>
+  <p>Written by {frontmatter.author}</p>
+  <p>Published on: {formattedPubDate}</p>
+  <p>Tags: {frontmatter.tags.join(", ")}</p>
+  <slot />
+</BaseLayout>
